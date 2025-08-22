@@ -1,0 +1,187 @@
+<div class="app-container">
+  <!-- Background Animation -->
+  <div class="bg-animation">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <svg class="icon" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"/>
+          </svg>
+        </div>
+        <span class="app-name">StagiairesPro</span>
+      </div>
+      <nav class="main-nav">
+        <a href="#" class="nav-link">Solutions</a>
+        <a href="#" class="nav-link">Tarifs</a>
+        <a href="#" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-grid">
+      <!-- Text Column -->
+      <div class="text-column">
+        <h1 class="main-title">
+          <span class="gradient-text">Gérez vos stagiaires</span><br>avec élégance
+        </h1>
+        <p class="main-description">
+          La plateforme tout-en-un pour le suivi, l'évaluation et la gestion des stagiaires en entreprise.
+        </p>
+
+        <div class="action-buttons">
+          <button (click)="goToLogin()" class="btn btn-primary">
+            Connexion
+          </button>
+          <button (click)="goToRegister()" class="btn btn-secondary">
+            Inscription
+          </button>
+        </div>
+      </div>
+
+      <!-- Illustration Column -->
+      <div class="illustration-column">
+        <div class="cards-container">
+          <!-- User Card 1 -->
+          <div class="user-card card-1">
+            <div class="user-profile">
+              <div class="user-avatar bg-purple">
+                <span>LP</span>
+              </div>
+              <div class="user-info">
+                <h3>Lisa Park</h3>
+                <p>Stagiaire Marketing</p>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-info">
+                <span>Progression</span>
+                <span>78%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 78%"></div>
+              </div>
+            </div>
+            <div class="user-stats">
+              <div class="stat-item">
+                <p>12</p>
+                <span>Tâches</span>
+              </div>
+              <div class="stat-item">
+                <p>4.8</p>
+                <span>Évaluation</span>
+              </div>
+              <div class="stat-item">
+                <p>24</p>
+                <span>Jours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Card 2 -->
+          <div class="user-card card-2">
+            <div class="user-profile">
+              <div class="user-avatar bg-blue">
+                <span>MJ</span>
+              </div>
+              <div class="user-info">
+                <h3>Marc Jansen</h3>
+                <p>Stagiaire IT</p>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-info">
+                <span>Progression</span>
+                <span>92%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 92%"></div>
+              </div>
+            </div>
+            <div class="user-stats">
+              <div class="stat-item">
+                <p>18</p>
+                <span>Tâches</span>
+              </div>
+              <div class="stat-item">
+                <p>4.9</p>
+                <span>Évaluation</span>
+              </div>
+              <div class="stat-item">
+                <p>42</p>
+                <span>Jours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Pourquoi choisir StagiairesPro ?</h2>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-icon bg-purple-light">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h3>Sécurité des données</h3>
+        <p>Protection maximale des informations sensibles de vos stagiaires.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-icon bg-blue-light">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3>Certification</h3>
+        <p>Générez automatiquement les attestations et certificats.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="feature-icon bg-indigo-light">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+          </svg>
+        </div>
+        <h3>Intégrations</h3>
+        <p>Connectez vos outils RH existants en quelques clics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <div class="logo-icon small">
+          <svg class="icon" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"/>
+          </svg>
+        </div>
+        <span class="app-name">StagiairesPro</span>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Confidentialité</a>
+        <a href="#" class="footer-link">Conditions</a>
+        <a href="#" class="footer-link">Support</a>
+        <p class="copyright">© 2023 StagiairesPro. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,9 @@
+<h2>Marquer Présence</h2>
+
+<select [(ngModel)]="status">
+  <option value="present">Présent</option>
+  <option value="absent">Absent</option>
+  <option value="retard">Retard</option>
+</select>
+
+<button (click)="markPresence()">Valider</button>

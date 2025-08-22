@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Affectations</title>
+
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Background Animation -->
+  <div class="bg-animation">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <svg class="icon" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"/>
+          </svg>
+        </div>
+        <span class="app-name">Admin Dashboard</span>
+      </div>
+      <div class="user-menu">
+        <div class="user-avatar bg-purple" (click)="toggleUserMenu()">
+          <span>AD</span>
+        </div>
+        <div class="user-dropdown" [class.show]="showUserMenu">
+          <div class="dropdown-item">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+            Mon profil
+          </div>
+          <div class="dropdown-item" (click)="confirmLogout()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h6a1 1 0 010 2H5v10h5a1 1 0 110 2H4a1 1 0 01-1-1V4zm10.293 1.293a1 1 0 011.414 0L18 8.586a1 1 0 010 1.414l-3.293 3.293a1 1 0 01-1.414-1.414L15.586 10H9a1 1 0 110-2h6.586l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+            Déconnexion
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <div class="dashboard-grid">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <nav class="sidebar-nav">
+          <!-- Dashboard -->
+          <a routerLink="/admin/dashboard" class="nav-item" [class.active]="isDashboardPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+
+          <!-- Stagiaires -->
+          <a routerLink="/admin/stagiaires" class="nav-item" [class.active]="isStagiairesPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+            <span>Stagiaires</span>
+          </a>
+
+          <!-- Types de Stage -->
+          <a routerLink="/admin/types-stage" class="nav-item" [class.active]="isTypesStagePage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span>Types de Stage</span>
+          </a>
+
+          <!-- Affectations -->
+          <a routerLink="/admin/affectations" class="nav-item active">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span>Affectations</span>
+          </a>
+
+          <!-- Universités -->
+          <a routerLink="/admin/universites" class="nav-item" [class.active]="isUniversitesPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+            </svg>
+            <span>Universités</span>
+          </a>
+
+<!--          &lt;!&ndash; Presences &ndash;&gt;-->
+<!--          <a routerLink="/admin/presences" class="nav-item" [class.active]="isPresencesPage()">-->
+<!--            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">-->
+<!--              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>-->
+<!--            </svg>-->
+<!--            <span>Presences</span>-->
+<!--          </a>-->
+
+<!--          &lt;!&ndash; Dailys &ndash;&gt;-->
+<!--          <a routerLink="/admin/dailys" class="nav-item" [class.active]="isDailysPage()">-->
+<!--            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">-->
+<!--              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>-->
+<!--              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>-->
+<!--            </svg>-->
+<!--            <span>Dailys</span>-->
+<!--          </a>-->
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <div class="dashboard-content">
+        <div class="content-header">
+          <h1 class="content-title">Gestion des Affectations</h1>
+          <button class="btn btn-primary" (click)="loadAffectations()" [class.loading]="loading">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+            </svg>
+            <span></span>
+          </button>
+        </div>
+
+        <!-- Loading/Error States -->
+        <div *ngIf="loading" class="loading-state">
+          <div class="spinner"></div>
+          <p>Chargement en cours...</p>
+        </div>
+
+        <div *ngIf="error" class="error-state">
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <p>{{ error }}</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="card-grid">
+          <!-- Formulaire ajout -->
+          <div class="main-card">
+            <div class="card-header">
+              <h2>Ajouter une affectation</h2>
+            </div>
+            <div class="card-body">
+              <form class="add-form" (ngSubmit)="addAffectation()">
+                <div class="form-grid">
+                  <!-- Stagiaire -->
+                  <div class="form-group">
+                    <label class="form-label">Stagiaire</label>
+                    <div class="select-wrapper">
+                      <select [(ngModel)]="newAffectation.stagiaire_id" name="stagiaire_id" class="form-input select-dark" required>
+                        <option value="" disabled selected>-- Sélectionner Stagiaire --</option>
+                        <option *ngFor="let s of stagiaires" [value]="s.id">{{ s.name }}</option>
+                      </select>
+                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Université -->
+                  <div class="form-group">
+                    <label class="form-label">Université</label>
+                    <div class="select-wrapper">
+                      <select [(ngModel)]="newAffectation.universite_id" name="universite_id" class="form-input select-dark" required>
+                        <option value="" disabled selected>-- Sélectionner Université --</option>
+                        <option *ngFor="let u of universites" [value]="u.id">{{ u.nom }}</option>
+                      </select>
+                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <button type="button" class="btn-add-option" (click)="showAddUniversiteForm = true">+ Ajouter</button>
+                    <div *ngIf="showAddUniversiteForm" class="add-option-form">
+                      <input [(ngModel)]="newUniversite.nom" name="nom" placeholder="Nom de l'université"
+                             class="form-input" required />
+                      <input [(ngModel)]="newUniversite.adresse" name="adresse" placeholder="Adresse complète"
+                             class="form-input" required />
+                      <div class="add-option-actions">
+                        <button type="button" (click)="addUniversite()">Enregistrer</button>
+                        <button type="button" (click)="showAddUniversiteForm = false">Annuler</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Type de Stage -->
+                  <div class="form-group">
+                    <label class="form-label">Type de Stage</label>
+                    <div class="select-wrapper">
+                      <select [(ngModel)]="newAffectation.type_stage_id" name="type_stage_id" class="form-input select-dark" required>
+                        <option value="" disabled selected>-- Sélectionner Type de Stage --</option>
+                        <option *ngFor="let t of typesStage" [value]="t.id">{{ t.libelle }}</option>
+                      </select>
+                      <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <button type="button" class="btn-add-option" (click)="showAddTypeStageForm = true">+ Ajouter Type Stage</button>
+                    <div *ngIf="showAddTypeStageForm" class="add-option-form">
+                      <input type="text" [(ngModel)]="newTypeStage.libelle" name="type_stage_libelle" placeholder="Nom du type de stage"  class="form-input"  required>
+                      <div class="add-option-actions">
+                        <button type="button" (click)="addTypeStage()">Enregistrer</button>
+                        <button type="button" (click)="showAddTypeStageForm = false">Annuler</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Spécialité -->
+                  <div class="form-group">
+                    <label class="form-label">Spécialité</label>
+                    <input [(ngModel)]="newAffectation.specialite" name="specialite" placeholder="Spécialité" class="form-input" required>
+                    <div class="form-hint">Ex: Informatique, Gestion, etc.</div>
+                  </div>
+
+                  <!-- Année scolaire -->
+                  <div class="form-group">
+                    <label class="form-label">Année scolaire</label>
+                    <input [(ngModel)]="newAffectation.annee_scolaire" name="annee_scolaire" placeholder="Ex: 2023-2024" class="form-input" required>
+                    <div class="form-hint">Format: AAAA-AAAA</div>
+                  </div>
+
+                  <!-- Dates -->
+                  <div class="form-group">
+                    <label class="form-label">Date Début</label>
+                    <div class="date-input-wrapper">
+                      <input type="date" [(ngModel)]="newAffectation.date_debut" name="date_debut" class="form-input date-input" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Date Fin</label>
+                    <div class="date-input-wrapper">
+                      <input type="date" [(ngModel)]="newAffectation.date_fin" name="date_fin" class="form-input date-input" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label">Observation</label>
+                  <textarea
+                    [(ngModel)]="newAffectation.observation"
+                    name="observation"
+                    placeholder="Notes ou observations supplémentaires (optionnel)"
+                    class="form-input textarea"
+                    rows="3"
+                  ></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-submit" [disabled]="loading">
+                      <span *ngIf="!loading" class="flex items-center justify-center gap-2">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Ajouter l'affectation
+                      </span>
+                    <span *ngIf="loading" class="flex items-center justify-center gap-2">
+                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        En cours...
+                      </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Formulaire de modification -->
+          <div *ngIf="editingAffectation" class="main-card">
+            <div class="card-header">
+              <h2>Modifier affectation</h2>
+            </div>
+            <div class="card-body">
+              <form class="add-form" (ngSubmit)="updateAffectation()">
+                <div class="form-grid">
+                  <!-- Stagiaire -->
+                  <div class="form-group">
+                    <label class="form-label">Stagiaire</label>
+                    <select [(ngModel)]="editingAffectation.stagiaire_id" name="edit_stagiaire_id" class="form-input" required>
+                      <option *ngFor="let s of stagiaires" [value]="s.id">{{ s.name }}</option>
+                    </select>
+                  </div>
+
+                  <!-- Université -->
+                  <div class="form-group">
+                    <label class="select-label">Université</label>
+                    <div class="select-theme">
+                      <select [(ngModel)]="editingAffectation.universite_id" name="edit_universite_id" required>
+                        <option *ngFor="let u of universites" [value]="u.id">{{ u.nom }}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Type de Stage -->
+                  <div class="form-group">
+                    <label class="select-label">Type de Stage</label>
+                    <div class="select-theme">
+                      <select [(ngModel)]="editingAffectation.type_stage_id" name="edit_type_stage_id" required>
+                        <option *ngFor="let t of typesStage" [value]="t.id">{{ t.libelle }}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Spécialité -->
+                  <div class="form-group">
+                    <label class="form-label">Spécialité</label>
+                    <input [(ngModel)]="editingAffectation.specialite" name="edit_specialite" class="form-input" required>
+                  </div>
+
+                  <!-- Année scolaire -->
+                  <div class="form-group">
+                    <label class="form-label">Année scolaire</label>
+                    <input [(ngModel)]="editingAffectation.annee_scolaire" name="edit_annee_scolaire" class="form-input" required>
+                  </div>
+
+                  <!-- Dates -->
+                  <div class="form-group">
+                    <label class="form-label">Date Début</label>
+                    <input type="date" [(ngModel)]="editingAffectation.date_debut" name="edit_date_debut" class="form-input" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Date Fin</label>
+                    <input type="date" [(ngModel)]="editingAffectation.date_fin" name="edit_date_fin" class="form-input" required>
+                  </div>
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label">Observation</label>
+                  <textarea
+                    [(ngModel)]="editingAffectation.observation"
+                    name="edit_observation"
+                    placeholder="Notes ou observations supplémentaires (optionnel)"
+                    class="form-input textarea"
+                    rows="3"
+                  ></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-submit" [disabled]="loading">
+                    Enregistrer
+                  </button>
+                  <button type="button" (click)="cancelEdit()" class="btn-cancel">
+                    Annuler
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Liste des affectations -->
+          <div class="main-card">
+            <div class="card-header">
+              <h2>Liste des affectations</h2>
+              <div class="search-box">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input placeholder="Rechercher..." [(ngModel)]="searchQuery" (input)="filterAffectations()" />
+              </div>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                <tr>
+                  <th>Stagiaire</th>
+                  <th>Université</th>
+                  <th>Type de Stage</th>
+                  <th>Spécialité</th>
+                  <th>Année scolaire</th>
+                  <th>Date Début</th>
+                  <th>Date Fin</th>
+                  <th>Observation</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let a of filteredAffectations">
+                  <td>{{ a.stagiaire_nom }}</td>
+                  <td>{{ a.universite_nom }}</td>
+                  <td>{{ a.type_stage_nom }}</td>
+                  <td>{{ a.specialite }}</td>
+                  <td>{{ a.annee_scolaire }}</td>
+                  <td>{{ a.date_debut | date:'shortDate' }}</td>
+                  <td>{{ a.date_fin | date:'shortDate' }}</td>
+                  <td>{{ a.observation}}</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button (click)="edit(a)" class="btn-icon bg-blue-500 bg-opacity-20 text-blue-400 hover:bg-opacity-30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                      </button>
+                      <button (click)="deleteAffectation(a.id)" class="btn-icon danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                      </button>
+                      <button (click)="generateAttestation(a)" class="btn-icon bg-green-500 bg-opacity-20 text-green-400 hover:bg-opacity-30" title="Générer l'attestation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

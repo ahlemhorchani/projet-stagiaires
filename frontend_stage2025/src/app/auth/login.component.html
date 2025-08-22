@@ -1,0 +1,101 @@
+<div class="auth-container">
+  <!-- Background Animation -->
+  <div class="bg-animation">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="auth-header">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <svg class="icon" viewBox="0 0 20 20">
+          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"/>
+        </svg>
+      </div>
+      <span class="app-name">StagiairesPro</span>
+    </div>
+  </header>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate class="auth-form">
+      <h2 class="form-title">Connexion</h2>
+
+      <div class="form-group">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Adresse email"
+          required
+          #emailField="ngModel"
+          class="form-input"
+          [class.invalid]="emailField.invalid && emailField.touched"
+        />
+        <div *ngIf="emailField.invalid && emailField.touched" class="error-message">
+          <svg class="error-icon" viewBox="0 0 20 20">
+            <path fill="currentColor" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+          </svg>
+          Email valide requis
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+          #passwordField="ngModel"
+          class="form-input"
+          [class.invalid]="passwordField.invalid && passwordField.touched"
+        />
+        <div *ngIf="passwordField.invalid && passwordField.touched" class="error-message">
+          <svg class="error-icon" viewBox="0 0 20 20">
+            <path fill="currentColor" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+          </svg>
+          Mot de passe requis
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid || loading"
+        class="submit-btn"
+      >
+        <span *ngIf="!loading">Se connecter</span>
+        <span *ngIf="loading" class="loading-spinner"></span>
+      </button>
+
+      <!-- Bouton de retour à l'accueil -->
+      <button
+        type="button"
+        class="home-btn"
+        routerLink="/"
+      >
+        <svg class="home-icon" viewBox="0 0 20 20">
+          <path fill="currentColor" d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+        </svg>
+        Retour à l'accueil
+      </button>
+
+      <div class="form-footer">
+        <p>Pas encore de compte ?
+          <a routerLink="/register" class="auth-link">Créer un compte</a>
+        </p>
+        <a routerLink="/forgot-password" class="forgot-password">Mot de passe oublié ?</a>
+      </div>
+
+      <div *ngIf="error" class="message error">
+        <svg class="message-icon" viewBox="0 0 20 20">
+          <path fill="currentColor" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+        </svg>
+        {{ error }}
+      </div>
+    </form>
+  </div>
+</div>
+
+

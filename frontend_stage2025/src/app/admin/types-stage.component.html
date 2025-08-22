@@ -1,0 +1,247 @@
+<div class="dashboard-container">
+  <!-- Background Animation -->
+  <div class="bg-animation">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <svg class="icon" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"/>
+          </svg>
+        </div>
+        <span class="app-name">Admin Dashboard</span>
+      </div>
+      <div class="user-menu">
+        <div class="user-avatar bg-purple" (click)="toggleUserMenu()">
+          <span>AD</span>
+        </div>
+        <div class="user-dropdown" [class.show]="showUserMenu">
+          <div class="dropdown-item">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+            Mon profil
+          </div>
+          <div class="dropdown-item" (click)="confirmLogout()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h6a1 1 0 010 2H5v10h5a1 1 0 110 2H4a1 1 0 01-1-1V4zm10.293 1.293a1 1 0 011.414 0L18 8.586a1 1 0 010 1.414l-3.293 3.293a1 1 0 01-1.414-1.414L15.586 10H9a1 1 0 110-2h6.586l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+            Déconnexion
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <div class="dashboard-grid">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <nav class="sidebar-nav">
+          <!-- Dashboard -->
+          <a routerLink="/admin/dashboard" class="nav-item" [class.active]="isDashboardPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+
+          <!-- Stagiaires -->
+          <a routerLink="/admin/stagiaires" class="nav-item" [class.active]="isStagiairesPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+            <span>Stagiaires</span>
+          </a>
+
+          <!-- Types de Stage -->
+          <a routerLink="/admin/types-stage" class="nav-item" [class.active]="isTypesStagePage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span>Types de Stage</span>
+          </a>
+
+          <!-- Affectations -->
+          <a routerLink="/admin/affectations" class="nav-item" [class.active]="isAffectationsPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span>Affectations</span>
+          </a>
+
+          <!-- Universités -->
+          <a routerLink="/admin/universites" class="nav-item" [class.active]="isUniversitesPage()">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+            </svg>
+            <span>Universités</span>
+          </a>
+
+<!--          &lt;!&ndash; Presences &ndash;&gt;-->
+<!--          <a routerLink="/admin/presences" class="nav-item" [class.active]="isPresencesPage()">-->
+<!--            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">-->
+<!--              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>-->
+<!--            </svg>-->
+<!--            <span>Presences</span>-->
+<!--          </a>-->
+
+<!--          &lt;!&ndash; Dailys &ndash;&gt;-->
+<!--          <a routerLink="/admin/dailys" class="nav-item" [class.active]="isDailysPage()">-->
+<!--            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">-->
+<!--              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>-->
+<!--              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>-->
+<!--            </svg>-->
+<!--            <span>Dailys</span>-->
+<!--          </a>-->
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <div class="dashboard-content">
+        <div class="content-header">
+          <h1 class="content-title">Gestion des Types de Stage</h1>
+          <button class="btn btn-primary" (click)="loadTypes()" [class.loading]="loading">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+            </svg>
+            <span></span>
+          </button>
+        </div>
+
+        <!-- Loading/Error States -->
+        <div *ngIf="loading" class="loading-state">
+          <div class="spinner"></div>
+          <p>Chargement en cours...</p>
+        </div>
+
+        <div *ngIf="error" class="error-state">
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <p>{{ error }}</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="card-grid">
+          <!-- Formulaire ajout -->
+          <div class="main-card">
+            <div class="card-header">
+              <h2>Ajouter un type de stage</h2>
+            </div>
+            <div class="card-body">
+              <form class="add-form" (ngSubmit)="addType()">
+                <div class="form-grid">
+                  <!-- Champ Libellé -->
+                  <div class="form-group">
+                    <label class="form-label">Libellé</label>
+                    <input [(ngModel)]="newType.libelle" name="libelle" placeholder="Libellé du type"
+                           class="form-input" required />
+                    <div class="form-hint">Le libellé du type de stage</div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-submit" [disabled]="loading">
+                    <span *ngIf="!loading">Ajouter le type</span>
+                    <span *ngIf="loading" class="flex items-center">
+                      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      En cours...
+                    </span>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Liste des types -->
+          <div class="main-card">
+            <div class="card-header">
+              <h2>Liste des types de stage</h2>
+              <div class="search-box">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input placeholder="Rechercher..." [(ngModel)]="searchQuery" (input)="filterTypes()" />
+              </div>
+            </div>
+            <div class="table-container">
+              <table class="w-full">
+                <thead>
+                <tr>
+                  <th>Libellé</th>
+                  <th>Créé le</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let type of filteredTypes" class="hover:bg-gray-800 hover:bg-opacity-30">
+                  <!-- Libellé -->
+                  <td *ngIf="!isEditingType(type)">{{ type.libelle }}</td>
+                  <td *ngIf="isEditingType(type)">
+                    <input [(ngModel)]="editingType!.libelle" placeholder="Libellé"
+                           class="bg-gray-100 text-gray-800 border border-gray-300 rounded px-2 py-1 w-full focus:outline-none focus:ring-1 focus:ring-purple-500" />
+                  </td>
+
+                  <!-- Date création -->
+                  <td>{{ type.created_at | date:'short' }}</td>
+
+                  <!-- Actions -->
+                  <td class="flex space-x-2">
+                    <ng-container *ngIf="editingType?.id !== type.id">
+                      <button (click)="edit(type)"
+                              class="btn-icon bg-blue-500 bg-opacity-20 text-blue-400 hover:bg-opacity-30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                      </button>
+                      <button (click)="deleteType(type.id)"
+                              class="btn-icon danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                      </button>
+                    </ng-container>
+
+                    <ng-container *ngIf="editingType?.id === type.id">
+                      <button (click)="updateType()"
+                              class="btn-icon bg-green-500 bg-opacity-20 text-green-400 hover:bg-opacity-30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </button>
+                      <button (click)="cancelEdit()"
+                              class="btn-icon danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      </button>
+                    </ng-container>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
